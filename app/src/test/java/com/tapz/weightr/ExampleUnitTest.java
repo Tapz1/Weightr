@@ -1,4 +1,4 @@
-package com.tapz.myapplication;
+package com.tapz.weightr;
 
 import org.junit.Test;
 

@@ -68,15 +68,15 @@ public final class DBContract {
     private static final String DELETE_WEIGHT_GOAL_TABLE =
             "DROP TABLE IF EXISTS " + WeightGoalTable.TABLE_NAME;
 
-/* ----- DB Helper Subclass ----- */
-    public static class UserDbHelper extends SQLiteOpenHelper {
+    /* ----- DB Helper Subclass ----- */
+    public static class DBHelper extends SQLiteOpenHelper {
         /* subclass that overrides onCreate() & onUpgrade() callback methods */
 
         // If you change the database schema, you must increment the database version.
         public static final int DATABASE_VERSION = 1;
         public static final String DATABASE_NAME = "Weightr_App.db";
 
-        public UserDbHelper(Context context){
+        public DBHelper(Context context){
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 

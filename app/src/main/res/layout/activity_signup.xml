@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity">
 
     <TextView
         android:id="@+id/textViewRegister"
@@ -24,17 +24,15 @@
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:layout_marginBottom="532dp"
+        android:layout_marginBottom="516dp"
         android:ems="10"
         android:hint="First Name"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/lastName"
@@ -44,12 +42,13 @@
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506" />
+        app:layout_constraintVertical_bias="0.43" />
 
     <EditText
         android:id="@+id/email"
@@ -59,6 +58,7 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -75,6 +75,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -90,6 +91,7 @@
         android:ems="10"
         android:hint="Verify Password"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
@@ -104,4 +106,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/repassword" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

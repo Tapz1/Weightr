@@ -11,6 +11,10 @@
         <entry key="..\:/Users/chris/AndroidStudioProjects/Weightr/app/src/main/res/layout/data_display.xml" value="0.5359375" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Weightr/app/src/main/res/layout/notifications.xml" value="0.5359375" />
         <entry key="..\:/Users/chris/AndroidStudioProjects/Weightr/app/src/main/res/layout/weight_entry.xml" value="0.5401041666666667" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_signup.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/layout/activity_weight_entry.xml" value="0.11614583333333334" />
+        <entry key="app/src/main/res/layout/signup.xml" value="0.20729166666666668" />
       </map>
     </option>
   </component>

@@ -3,6 +3,8 @@ package com.tapz.weightr;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,8 +18,9 @@ import com.tapz.weightr.DBContract.DBHelper;
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonSignUp, buttonLogin, buttonCreateAccount;
-    private EditText editEmail, editPassword, firstName, lastName, email, password, repassword;
+    private EditText editEmail, editPassword;
     DBHelper db;
+    //public User user;
 
 
     @Override
@@ -31,29 +34,6 @@ public class MainActivity extends AppCompatActivity {
         buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
         db = new DBHelper(this);
 
-        // button is clickable once password is written
-        editPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                // checking if nameText field is null or not to enable/disable button
-                if(editable.toString().equals("")){
-                    buttonLogin.setEnabled(false);
-                }else{
-                    buttonLogin.setEnabled(true);
-                }
-
-            }
-        });
 
         /* button listener for login */
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = editEmail.getText().toString();
                 String password = editPassword.getText().toString();
+                // String first_name, last_name;
 
                 if(email.equals("") || password.equals("")){
                     Toast.makeText(MainActivity.this, "Please enter in both fields", Toast.LENGTH_SHORT).show();
@@ -90,11 +71,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void createUser(){
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        repassword = (EditText) findViewById(R.id.repassword);
-        buttonCreateAccount = (Button) findViewById(R.id.buttonCreateAccount);
-
-    }
 }

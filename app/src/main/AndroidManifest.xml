@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Weightr">
         <activity
-            android:name=".ViewDataScrollingActivity"
+            android:name=".NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ViewDataActivity"
             android:exported="false"
             android:label="@string/title_activity_view_data_scrolling"
             android:theme="@style/Theme.Weightr.NoActionBar" />

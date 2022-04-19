@@ -6,10 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.view.View;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public final class DBContract {
+
+    UserModel user;
 
     // prevents someone from accidentally instantiating the contract class
     private DBContract(){}
@@ -35,17 +39,19 @@ public final class DBContract {
     /* --- Weight Entry Table --- */
     private static final class WeightEntryTable implements BaseColumns {
         private static final String TABLE_NAME = "weight_entry";
+        private static final String COLUMN_NAME_DATE = "date";
         private static final String COLUMN_NAME_WEIGHT = "weight";
         private static final String COLUMN_NAME_WEIGHT_GOAL = "weight_goal";
-        private static final String COLUMN_NAME_DATE = "date";
+        // private static final String COLUMN_NAME_EMAIL = "email";
     }
 
     private static final String CREATE_WEIGHT_ENTRY_TABLE =
             "CREATE TABLE " + WeightEntryTable.TABLE_NAME + " (" +
                     WeightEntryTable._ID + " INTEGER PRIMARY KEY," +
-                    WeightEntryTable.COLUMN_NAME_WEIGHT + " REAL," +
-                    WeightEntryTable.COLUMN_NAME_WEIGHT_GOAL + " REAL," +
-                    WeightEntryTable.COLUMN_NAME_DATE + " TEXT)";
+                    WeightEntryTable.COLUMN_NAME_DATE + " TEXT, " +
+                    WeightEntryTable.COLUMN_NAME_WEIGHT + " TEXT," +
+                    WeightEntryTable.COLUMN_NAME_WEIGHT_GOAL + " TEXT)";
+                    // WeightEntryTable.COLUMN_NAME_EMAIL + " TEXT)";
 
 
     /* --- Weight Goal Table --- */
@@ -57,7 +63,7 @@ public final class DBContract {
     private static final String CREATE_WEIGHT_GOAL_TABLE =
             "CREATE TABLE " + WeightGoalTable.TABLE_NAME + " (" +
                     WeightGoalTable._ID + " INTEGER PRIMARY KEY," +
-                    WeightGoalTable.COLUMN_NAME_WEIGHT_GOAL + " REAL)";
+                    WeightGoalTable.COLUMN_NAME_WEIGHT_GOAL + " TEXT)";
 
 
 
@@ -114,12 +120,14 @@ public final class DBContract {
         }
 
 
-        public Boolean insertWeightData(String weight, String weight_goal){
+        public Boolean insertWeightData(String date, String weight, String weight_goal){
             // inserting weight into the weight entry table
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
-            contentValues.put(WeightEntryTable.COLUMN_NAME_WEIGHT, Double.parseDouble(weight));
-            contentValues.put(WeightEntryTable.COLUMN_NAME_WEIGHT_GOAL, Double.parseDouble(weight_goal));
+            contentValues.put(WeightEntryTable.COLUMN_NAME_DATE, date);
+            contentValues.put(WeightEntryTable.COLUMN_NAME_WEIGHT, weight);
+            contentValues.put(WeightEntryTable.COLUMN_NAME_WEIGHT_GOAL, weight_goal);
+            // contentValues.put(WeightEntryTable.COLUMN_NAME_EMAIL, email);
             long result = db.insert(WeightEntryTable.TABLE_NAME, null, contentValues);
             if(result == -1){
                 return false;
@@ -132,13 +140,36 @@ public final class DBContract {
             // inserting weight into the weight entry table
             SQLiteDatabase db = this.getWritableDatabase();
             ContentValues contentValues = new ContentValues();
-            contentValues.put(WeightEntryTable.COLUMN_NAME_WEIGHT_GOAL, Double.parseDouble(weight_goal));
-            long result = db.insert(WeightEntryTable.TABLE_NAME, null, contentValues);
+            contentValues.put(WeightGoalTable.COLUMN_NAME_WEIGHT_GOAL, weight_goal);
+            long result = db.insert(WeightGoalTable.TABLE_NAME, null, contentValues);
             if(result == -1){
                 return false;
             }else{
                 return true;
             }
+        }
+
+        public ArrayList<String> getEntryId(){
+            ArrayList<String> entryIdList = new ArrayList<>();
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM weight_entry", null);
+            while(cursor.moveToNext()){
+                String entryId = cursor.getString(0);
+                entryIdList.add(entryId);
+
+            }
+            return entryIdList;
+        }
+
+        public Boolean deleteEntry(String entry_id){
+            SQLiteDatabase db = this.getReadableDatabase();
+            long result = db.delete(WeightEntryTable.TABLE_NAME,"WHERE _id = ?", new String[]{entry_id});
+            if(result == -1){
+                return false;
+            }else{
+                return true;
+            }
+            // Cursor cursor = db.rawQuery("DELETE FROM weight_entry WHERE _id = ?", new String[]{entry_id});
         }
 
         public Boolean checkEmail(String email){
@@ -178,30 +209,21 @@ public final class DBContract {
             return goal;
         }
 
-        public Cursor fetch(){
-            SQLiteDatabase db = this.getWritableDatabase();
-            Cursor cursor = db.rawQuery("SELECT * FROM weight_entry ORDER BY date DESC", null);
-            if (cursor != null) {
-                cursor.moveToFirst();
+        public ArrayList<ViewDataModel> getWeightData(){
+            ArrayList<ViewDataModel> userDataList = new ArrayList<>();
+            SQLiteDatabase db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT * FROM weight_entry", null);
+            while(cursor.moveToNext()){
+                String date = cursor.getString(1);
+                String weight = cursor.getString(2);
+                String weight_goal = cursor.getString(3);
+                ViewDataModel viewDataModel = new ViewDataModel(date, weight, weight_goal);
+                userDataList.add(viewDataModel);
+
             }
-            return cursor;
+            return userDataList;
         }
-        public ArrayList<ViewDataModel> readData(){
-            SQLiteDatabase db = this.getWritableDatabase();
-            Cursor cursor = db.rawQuery("SELECT * FROM weight_entry ORDER BY date DESC", null);
-            ArrayList<ViewDataModel> dataList = new ArrayList<>();
-            if(cursor.moveToFirst()){
-                do{
-                    dataList.add(new ViewDataModel(
-                            cursor.getString(1),
-                            cursor.getDouble(2),
-                            cursor.getDouble(3))
-                    );
-                } while(cursor.moveToNext());
-            }
-            cursor.close();
-            return dataList;
-        }
+
 
         public Boolean hasWeightGoal(){
             // future update: add email in param

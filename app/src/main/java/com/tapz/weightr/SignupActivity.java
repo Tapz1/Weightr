@@ -15,7 +15,7 @@ public class SignupActivity extends AppCompatActivity {
     private Button buttonCreateAccount;
     private EditText firstName, lastName, email, password, repassword;
     DBHelper db;
-    public User user;
+    public UserModel user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,9 @@ public class SignupActivity extends AppCompatActivity {
                                 if(insert){
                                     Toast.makeText(SignupActivity.this, "Registered Successfully!",
                                             Toast.LENGTH_SHORT).show();
-                                    //new User(first_name, last_name, email_address);
+                                    user = new UserModel(first_name, last_name, email_address);
                                     // moving to home screen
-                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                    Intent intent = new Intent(SignupActivity.this, WeightGoalActivity.class);
                                     startActivity(intent);
                                 }else{
                                     Toast.makeText(SignupActivity.this, "Registration failed :(", Toast.LENGTH_SHORT).show();

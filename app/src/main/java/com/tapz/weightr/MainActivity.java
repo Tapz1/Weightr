@@ -49,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
                     Boolean checkUserPass = db.checkEmailPassword(email, password);
                     if(checkUserPass){
                         Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(intent);
+                        finish();
                     }else{
                         Toast.makeText(MainActivity.this, "Invalid Login!", Toast.LENGTH_SHORT).show();
                     }

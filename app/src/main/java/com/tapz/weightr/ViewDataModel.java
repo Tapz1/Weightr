@@ -3,10 +3,10 @@ package com.tapz.weightr;
 public class ViewDataModel {
 
     private String date;
-    private Double weight;
-    private Double weight_goal;
+    private String weight;
+    private String weight_goal;
 
-    public ViewDataModel(String date, Double weight, Double weight_goal){
+    public ViewDataModel(String date, String weight, String weight_goal){
         this.date = date;
         this.weight = weight;
         this.weight_goal = weight_goal;
@@ -20,19 +20,19 @@ public class ViewDataModel {
         this.date = date;
     }
 
-    public Double getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    public Double getWeight_goal() {
+    public String getWeight_goal() {
         return weight_goal;
     }
 
-    public void setWeight_goal(Double weight_goal) {
+    public void setWeight_goal(String weight_goal) {
         this.weight_goal = weight_goal;
     }
 }

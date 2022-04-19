@@ -14,8 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.tapz.weightr.DBContract.DBHelper;
 
 
@@ -25,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView greetingTextView;
     private FloatingActionButton fab;
     DBHelper db;
-
+    UserModel user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
         action_viewWeightData = (Button) findViewById(R.id.action_viewWeightData);
         greetingTextView = (TextView) findViewById(R.id.greetingTextView);
         fab = findViewById(R.id.fab);
+        LocalDate todaysDate = LocalDate.now();
 
         db = new DBContract.DBHelper(this);
         //String email = user.getEmail().toString();
@@ -81,8 +85,9 @@ public class HomeActivity extends AppCompatActivity {
                 //int weight = Integer.parseInt(weightEditText.getText().toString());
                 String weight = weightEditText.getText().toString();
                 String goal = String.valueOf(db.getWeightGoal());
+                //String email = user.getEmail();
 
-                Boolean insert = db.insertWeightData(weight, goal);
+                Boolean insert = db.insertWeightData(String.valueOf(todaysDate),weight, goal);
                 if(insert){
                     Toast.makeText(HomeActivity.this, "Weight Entered Successfully!", Toast.LENGTH_SHORT).show();
                     // refresh page
@@ -111,21 +116,29 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    /*  this is for the menu */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.action_viewWeightData:
                 // view weight data selected
-                Intent intent = new Intent(getApplicationContext(), ViewDataScrollingActivity.class);
+                intent = new Intent(getApplicationContext(), ViewDataActivity.class);
                 startActivity(intent);
                 return true;
 
             case R.id.action_settings1:
                 // Settings selected
+                intent = new Intent(HomeActivity.this, NotificationActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
 
             case R.id.action_logout:
                 // Logout selected
+                intent = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
 
             default:

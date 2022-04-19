@@ -1,12 +1,12 @@
 package com.tapz.weightr;
 
-public class User {
+public class UserModel {
     // this class stores the current user info in a session
     private String firstName;
     private String lastName;
     private String email;
 
-    public User(String firstName, String lastName, String email) {
+    public UserModel(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

@@ -2,14 +2,24 @@ package com.tapz.weightr;
 
 public class ViewDataModel {
 
+    private int id;
     private String date;
     private String weight;
     private String weight_goal;
 
-    public ViewDataModel(String date, String weight, String weight_goal){
+    public ViewDataModel(int id, String date, String weight, String weight_goal){
+        this.id = id;
         this.date = date;
         this.weight = weight;
         this.weight_goal = weight_goal;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDate() {

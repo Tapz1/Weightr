@@ -16,6 +16,8 @@
     <string name="verify_password">Verify Password</string>
     <string name="create_account">Create Account</string>
     <string name="submit">Submit</string>
+    <string name="entry_deleted">Entry Deleted</string>
+    <string name="undo">Undo</string>
     <string name="title_activity_view_data_scrolling">ViewDataScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

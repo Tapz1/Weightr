@@ -127,13 +127,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
-            case R.id.action_settings1:
-                // Settings selected
-                intent = new Intent(HomeActivity.this, NotificationActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
-
             case R.id.action_logout:
                 // Logout selected
                 intent = new Intent(HomeActivity.this, MainActivity.class);

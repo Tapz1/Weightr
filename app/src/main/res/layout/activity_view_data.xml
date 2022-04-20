@@ -17,6 +17,7 @@
         android:text="Your Weight History"
         android:textAlignment="center"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="-2dp" />
 
@@ -39,6 +40,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="45dp"
         android:text="Date"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,6 +51,7 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="142dp"
         android:text="Weight Goal"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/weightTitle"
@@ -61,6 +64,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="44dp"
         android:text="Weight"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/dateTitle"
         app:layout_constraintTop_toTopOf="parent" />
 

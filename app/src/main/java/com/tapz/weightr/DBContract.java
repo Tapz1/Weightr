@@ -161,15 +161,28 @@ public final class DBContract {
             return entryIdList;
         }
 
-        public Boolean deleteEntry(String entry_id){
-            SQLiteDatabase db = this.getReadableDatabase();
-            long result = db.delete(WeightEntryTable.TABLE_NAME,"WHERE _id = ?", new String[]{entry_id});
+        public Boolean editEntry(int entry_id, String date, String weight, String weight_goal){
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(WeightEntryTable.COLUMN_NAME_DATE, date);
+            contentValues.put(WeightEntryTable.COLUMN_NAME_WEIGHT, weight);
+            contentValues.put(WeightEntryTable.COLUMN_NAME_WEIGHT_GOAL, weight_goal);
+            long result = db.update(WeightEntryTable.TABLE_NAME,contentValues,"_id = ?", new String[]{String.valueOf(entry_id)});
             if(result == -1){
                 return false;
             }else{
                 return true;
             }
-            // Cursor cursor = db.rawQuery("DELETE FROM weight_entry WHERE _id = ?", new String[]{entry_id});
+        }
+
+        public Boolean deleteEntry(int entry_id){
+            SQLiteDatabase db = this.getReadableDatabase();
+            long result = db.delete(WeightEntryTable.TABLE_NAME,"_id = ?", new String[]{String.valueOf(entry_id)});
+            if(result == -1){
+                return false;
+            }else{
+                return true;
+            }
         }
 
         public Boolean checkEmail(String email){
@@ -214,10 +227,11 @@ public final class DBContract {
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM weight_entry", null);
             while(cursor.moveToNext()){
+                int id = cursor.getInt(0);
                 String date = cursor.getString(1);
                 String weight = cursor.getString(2);
                 String weight_goal = cursor.getString(3);
-                ViewDataModel viewDataModel = new ViewDataModel(date, weight, weight_goal);
+                ViewDataModel viewDataModel = new ViewDataModel(id, date, weight, weight_goal);
                 userDataList.add(viewDataModel);
 
             }

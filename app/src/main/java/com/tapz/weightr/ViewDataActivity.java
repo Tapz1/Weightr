@@ -29,7 +29,7 @@ public class ViewDataActivity extends AppCompatActivity {
 
     TextView dataTextView;
     ListView listView;
-    Button deleteButton;
+    Button deleteButton, buttonHome;
     DBHelper db;
     ArrayList<ViewDataModel> userDataList;
     ArrayList<String> entryIds;
@@ -41,21 +41,21 @@ public class ViewDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_data);
 
         deleteButton = (Button) findViewById(R.id.deleteButton1);
+        buttonHome = (Button) findViewById(R.id.buttonHome);
         listView = (ListView) findViewById(R.id.listView);
         db = new DBHelper(this);
         userDataList = new ArrayList<>();
         entryIds = new ArrayList<>();
         loadDataInListView();
 
-    }
-
-
-
-    private void loadDataInListView() {
-        userDataList = db.getWeightData();
-        myAdapter = new MyAdapter(this, userDataList);
-        listView.setAdapter(myAdapter);
-        myAdapter.notifyDataSetChanged();
+        buttonHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -75,6 +75,12 @@ public class ViewDataActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            case R.id.action_notifications:
+                // home selected
+                intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                startActivity(intent);
+                return true;
+
             case R.id.action_logout:
                 // Logout selected
                 intent = new Intent(ViewDataActivity.this, MainActivity.class);
@@ -86,6 +92,17 @@ public class ViewDataActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
+    private void loadDataInListView() {
+        userDataList = db.getWeightData();
+        myAdapter = new MyAdapter(this, userDataList);
+        listView.setAdapter(myAdapter);
+        myAdapter.notifyDataSetChanged();
+    }
+
+
 
 
 }

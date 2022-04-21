@@ -127,6 +127,12 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
 
+            case R.id.action_notifications:
+                // view weight data selected
+                intent = new Intent(getApplicationContext(), NotificationActivity.class);
+                startActivity(intent);
+                return true;
+
             case R.id.action_logout:
                 // Logout selected
                 intent = new Intent(HomeActivity.this, MainActivity.class);

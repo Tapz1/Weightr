@@ -5,14 +5,14 @@
     android:layout_height="match_parent">
 
     <item
-        android:id="@+id/action_viewWeightData"
+        android:id="@+id/action_viewHome"
         app:showAsAction="never"
-        android:title="Weight Log" />
+        android:title="Home" />
 
     <item
         android:id="@+id/action_notifications"
         app:showAsAction="never"
-        android:title="Notifications" />
+        android:title="Weight Log" />
 
 
     <item

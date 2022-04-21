@@ -13,19 +13,17 @@
         android:id="@+id/dataHeader1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
+        android:layout_marginBottom="44dp"
         android:text="Your Weight History"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-2dp" />
-
+        app:layout_constraintBottom_toTopOf="@+id/listView" />
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="410dp"
-        android:layout_height="594dp"
+        android:layout_width="412dp"
+        android:layout_height="574dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,35 +36,50 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="17dp"
         android:text="Date"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dataHeader1" />
 
     <TextView
         android:id="@+id/weightGoalTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="142dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="17dp"
         android:text="Weight Goal"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
+        app:layout_constraintEnd_toStartOf="@+id/buttonHome"
+        app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toEndOf="@+id/weightTitle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dataHeader1" />
 
     <TextView
         android:id="@+id/weightTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="44dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="17dp"
         android:text="Weight"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintStart_toEndOf="@+id/dateTitle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/dataHeader1" />
+
+    <Button
+        android:id="@+id/buttonHome"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="7dp"
+        android:text="Home"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/weightGoalTitle"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

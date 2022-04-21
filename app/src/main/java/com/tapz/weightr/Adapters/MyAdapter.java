@@ -56,7 +56,6 @@ public class MyAdapter extends BaseAdapter {
         TextView tv_weight = (TextView) view.findViewById(R.id.weight);
         TextView tv_weightGoal = (TextView) view.findViewById(R.id.weightGoal);
         Button deleteButton = (Button) view.findViewById(R.id.deleteButton1);
-        Button editButton = (Button) view.findViewById(R.id.editButton);
 
         ViewDataModel viewDataModel = arrayList.get(i);
 
@@ -64,19 +63,6 @@ public class MyAdapter extends BaseAdapter {
         tv_weight.setText(viewDataModel.getWeight());
         tv_weightGoal.setText(viewDataModel.getWeight_goal());
 
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int id= viewDataModel.getId();
-                String date = viewDataModel.getDate();
-                String weight = viewDataModel.getWeight();
-                String weight_goal = viewDataModel.getWeight_goal();
-                editWeightActivity = new EditWeightActivity(id, date, weight, weight_goal);
-
-                Intent intent = new Intent(context, EditWeightActivity.class);
-                context.startActivity(intent);
-            }
-        });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +84,7 @@ public class MyAdapter extends BaseAdapter {
                 });
                 snackbar.show();*/
 
-                Intent intent = new Intent(context, ViewDataActivity.class);
+                Intent intent = new Intent(context.getApplicationContext(), ViewDataActivity.class);
                 context.startActivity(intent);
             }
         });

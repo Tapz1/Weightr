@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:weightSum="5">
+        android:weightSum="4">
 
         <TextView
             android:id="@+id/date"
@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:text="2022/04/16"
             android:textAlignment="center"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/weight"
@@ -28,7 +28,7 @@
             android:layout_weight="1"
             android:text="165"
             android:textAlignment="center"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/weightGoal"
@@ -37,15 +37,8 @@
             android:layout_weight="1"
             android:text="155"
             android:textAlignment="center"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Edit"
-            android:textSize="11sp" />
 
         <Button
             android:id="@+id/deleteButton1"
@@ -53,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Delete"
-            android:textSize="11sp"
+            android:textSize="12sp"
             app:backgroundTint="@color/design_default_color_error" />
 
 

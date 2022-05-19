@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonSignUp, buttonLogin, buttonCreateAccount;
     private EditText editEmail, editPassword;
     DBHelper db;
-    //public User user;
+    public UserModel user;
 
 
     @Override
@@ -46,8 +46,14 @@ public class MainActivity extends AppCompatActivity {
                 if(email.equals("") || password.equals("")){
                     Toast.makeText(MainActivity.this, "Please enter in both fields", Toast.LENGTH_SHORT).show();
                 }else{
+                    if(email.contains("=")){
+                        // looks for SQL Injection
+                        Toast.makeText(MainActivity.this, "Invalid Email", Toast.LENGTH_SHORT).show();
+                        throw new IllegalArgumentException("Invalid Email");
+                    }
                     Boolean checkUserPass = db.checkEmailPassword(email, password);
                     if(checkUserPass){
+                        new UserModel()
                         Toast.makeText(MainActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(intent);

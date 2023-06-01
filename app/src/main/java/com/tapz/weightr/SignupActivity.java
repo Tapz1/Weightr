@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.tapz.weightr.DBContract.DBHelper;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class SignupActivity extends AppCompatActivity {
 
     private Button buttonCreateAccount;
@@ -43,6 +46,7 @@ public class SignupActivity extends AppCompatActivity {
                         pass.equals("") || repass.equals("")){
                     Toast.makeText(SignupActivity.this, "Please complete all fields", Toast.LENGTH_SHORT).show();
                 } else{
+                    user = new UserModel(first_name, last_name, email_address);
                     if(passwordReqs(pass)){
                         // calls method for password requirements
                         if(pass.equals(repass)){

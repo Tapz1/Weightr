@@ -72,7 +72,7 @@ public class NotificationActivity extends AppCompatActivity {
 
             case R.id.action_logout:
                 // Logout selected
-                intent = new Intent(NotificationActivity.this, MainActivity.class);
+                intent = new Intent(NotificationActivity.this, MainActivityController.class);
                 startActivity(intent);
                 finish();
                 return true;

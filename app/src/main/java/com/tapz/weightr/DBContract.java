@@ -238,6 +238,22 @@ public final class DBContract {
             return userDataList;
         }
 
+        public String getUserData(String data, String email){
+            SQLiteDatabase db = this.getWritableDatabase();
+            Cursor cursor = db.rawQuery("SELECT ? FROM users WHERE email = ?", new String[] {data, email});
+            String selectedData = "";
+            if(cursor != null){
+                try {
+                    if(cursor.moveToFirst()){
+                        selectedData = cursor.getString(0);
+                    }
+                } finally {
+                    cursor.close();
+                }
+            }
+            return selectedData;
+        }
+
 
         public Boolean hasWeightGoal(){
             // future update: add email in param

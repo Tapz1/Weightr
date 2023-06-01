@@ -15,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tapz.weightr.DBContract.DBHelper;
@@ -39,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         enterWeightButton = (Button) findViewById(R.id.enterWeightButton);
         action_viewWeightData = (Button) findViewById(R.id.action_viewWeightData);
         greetingTextView = (TextView) findViewById(R.id.greetingTextView);
+
         fab = findViewById(R.id.fab);
         LocalDate todaysDate = LocalDate.now();
 
@@ -50,6 +49,14 @@ public class HomeActivity extends AppCompatActivity {
         if(!db.hasWeightGoal()){
             Intent intent = new Intent(getApplicationContext(), WeightGoalActivity.class);
             startActivity(intent);
+        }
+*/
+/*
+        String name = user.getFirstName();
+
+        // "" means that the string is empty
+        if(!name.equals("")){
+            greetingTextView.setText(String.format("%s, %s!", "Welcome", name));
         }
 */
 
@@ -110,6 +117,29 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    public String getUserData(UserModel user, String data){
+        if(data.contains("first")){
+            return user.getFirstName();
+        }
+        if(data.contains("last")){
+            return user.getLastName();
+        }
+        if(data.contains("email")){
+            return user.getEmail();
+        }
+
+        return "";
+    }
+
+    public void SayHello(View view){
+        String name = getUserData(user, "first");
+
+        // "" means that the string is empty
+        if(!name.equals("")){
+            greetingTextView.setText(String.format("%s, %s!", "Welcome", name));
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.appbar_menu, menu);
@@ -135,7 +165,7 @@ public class HomeActivity extends AppCompatActivity {
 
             case R.id.action_logout:
                 // Logout selected
-                intent = new Intent(HomeActivity.this, MainActivity.class);
+                intent = new Intent(HomeActivity.this, MainActivityController.class);
                 startActivity(intent);
                 finish();
                 return true;
